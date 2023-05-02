@@ -73,18 +73,3 @@ namelist_wrf:
   class: File
   path: '../input_files/namelists/namelist.input.wrf'
 
-# EMEP settings
-
-emepcores: 9
-
-namelist_emep:
-  class: File
-  path: '../input_files/namelists/config_emep.nml.emep'
-
-inputdir_emep:
-  class: Directory
-  path: '../input_files/emep_input'
-
-metdir_name: 'emep_wrf_input'
-
-runlabel_emep: 'Base' 
