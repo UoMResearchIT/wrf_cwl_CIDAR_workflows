@@ -86,22 +86,6 @@ inputs:
   realcores: int
   wrfcores: int
   generate_rundir: boolean
-    
-# EMEP settings:
-  namelist_emep:
-    label: EMEP configuration file
-    type: File
-  inputdir_emep:
-    label: EMEP Input Files
-    type: Directory
-  runlabel_emep:
-    label: EMEP run label, for output files, should match 'runlabel1' in namelist
-    type: string
-  metdir_name:
-    label: Directory name for WRF input Files, should match 'meteo' base-directory in namelist
-    type: string
-  emepcores: int
-
 
 outputs:
   wrfout:
@@ -110,12 +94,6 @@ outputs:
       type: array
       items: File
     outputSource: step4_wrf_workflow/wrfout
-  emepout:
-    label: output files
-    type:
-      type: array
-      items: File
-    outputSource: step5_emep_workflow/emepout
 
 
 steps:
@@ -171,15 +149,3 @@ steps:
       generate_rundir: generate_rundir
     out: [wrfout]
     
-  step5_emep_workflow:
-    run: workflows/emep_workflow.cwl
-    in:
-      namelist_emep: namelist_emep
-      metfiles_emep: step4_wrf_workflow/wrfout
-      metdir_name: metdir_name
-      inputdir_emep: inputdir_emep
-      runlabel_emep: runlabel_emep
-      emepcores: emepcores
-    out: [emepout]
-    
-
